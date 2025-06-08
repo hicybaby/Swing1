@@ -14,9 +14,9 @@ import javax.swing.JTextField;
 
 public class MiniConculatorView extends JFrame {
 	private MiniConculatorModel mcmd;
-	private JTextField jtf_firstvalue;
-	private JTextField jtf_secondtvalue;
-	private JTextField jtf_answervalue;
+	JTextField jtf_firstvalue;
+	JTextField jtf_secondtvalue;
+	JTextField jtf_answervalue;
 
 	public MiniConculatorView() {
 		this.mcmd = new MiniConculatorModel();
@@ -103,6 +103,7 @@ public class MiniConculatorView extends JFrame {
 
 	// phep cong
 	public void Plus() {
+		checkFieldData();
 		double firstvalue = Double.valueOf(jtf_firstvalue.getText());
 		double secondvalue = Double.valueOf(jtf_secondtvalue.getText());
 		this.mcmd.setFirstValue(firstvalue);
@@ -124,6 +125,7 @@ public class MiniConculatorView extends JFrame {
 
 	// phep nhan
 	public void Times() {
+		checkFieldData();
 		double firstvalue = Double.valueOf(jtf_firstvalue.getText());
 		double secondvalue = Double.valueOf(jtf_secondtvalue.getText());
 		this.mcmd.setFirstValue(firstvalue);
@@ -135,6 +137,7 @@ public class MiniConculatorView extends JFrame {
 
 	// phep chia
 	public void Divided() {
+		checkFieldData();
 		double firstvalue = Double.valueOf(jtf_firstvalue.getText());
 		double secondvalue = Double.valueOf(jtf_secondtvalue.getText());
 		this.mcmd.setFirstValue(firstvalue);
@@ -146,6 +149,7 @@ public class MiniConculatorView extends JFrame {
 
 	// ham mu
 	public void Pow() {
+		checkFieldData();
 		double firstvalue = Double.valueOf(jtf_firstvalue.getText());
 		double secondvalue = Double.valueOf(jtf_secondtvalue.getText());
 		this.mcmd.setFirstValue(firstvalue);
@@ -157,12 +161,31 @@ public class MiniConculatorView extends JFrame {
 
 	// chia lay du
 	public void Mod() {
+		checkFieldData();
 		double firstvalue = Double.valueOf(jtf_firstvalue.getText());
 		double secondvalue = Double.valueOf(jtf_secondtvalue.getText());
 		this.mcmd.setFirstValue(firstvalue);
 		this.mcmd.setSecondValue(secondvalue);
 		this.mcmd.mod();
 		this.jtf_answervalue.setText(this.mcmd.getAnswer() + " ");
+
+	}
+	
+	public void checkFieldData() {
+		if (checkValue(jtf_firstvalue.getText(), jtf_secondtvalue.getText())) {
+			jtf_answervalue.setText("Du Lieu Nhap sai");
+			return;
+		}
+	}
+
+	public boolean checkValue(String value1, String value2) {
+		try {
+			Double.parseDouble(value1);
+			Double.parseDouble(value2);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 
 	}
 

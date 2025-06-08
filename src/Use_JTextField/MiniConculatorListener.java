@@ -9,6 +9,9 @@ public class MiniConculatorListener implements ActionListener {
 
 	public MiniConculatorListener(MiniConculatorView mcv) {
 		this.mcv = mcv;
+		mcv.jtf_answervalue.addActionListener(this);
+		mcv.jtf_firstvalue.addActionListener(this);
+		mcv.jtf_secondtvalue.addActionListener(this);
 	}
 
 	@Override
